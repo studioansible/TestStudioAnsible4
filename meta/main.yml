@@ -1,0 +1,18 @@
+galaxy_info:
+  role_name: fcfcf_1
+  author: dsfsfsr
+  description: rfrfr
+  company: rffrwfffr
+  issue_tracker_url: fjfjfjfugiugi
+  license: frrsf
+  min_ansible_version: sfsfsr
+  min_ansible_container_version: fsfrf
+  github_branch: fsrsf
+  galaxy_tags:
+    - tag1
+    - tag2
+  platforms:
+    - name: dffdea
+      versions:
+        - dedaea
+dependencies: []

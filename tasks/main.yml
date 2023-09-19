@@ -1,0 +1,31 @@
+- name: Install latest version of Apache
+  ansible.builtin.apt:
+    name: apache2
+    update_cache: true
+    state: present
+
+- name: Create document root for your domain
+  ansible.builtin.file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    owner: "ubuntu"
+    mode: '0600'
+
+- name: Copy your index page
+  ansible.builtin.template:
+    src: "templates/index.html.j2"
+    dest: "/var/www/html/index.html"
+    mode: '0600'
+
+- name: Set up virtuahHost
+  ansible.builtin.template:
+    src: "files/apache.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+    notify: restart-apache
+    mode: '0600'
+
+- name: "UFW firewall allow HTTP on port {{ http_port }}"
+  community.general.ufw:
+    rule: allow
+    port: "{{ http_port }}"
+    proto: tcp
